@@ -5,7 +5,6 @@ class OpenWeatherService
       req.params['lon'] = long
       req.params['units'] = 'imperial'
     end
-
     JSON.parse(response.body, symbolize_names: true)
   end
 
