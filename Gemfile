@@ -38,6 +38,7 @@ group :development, :test do
   gem 'orderly'
   gem 'capybara'
   gem 'csv'
+  gem 'pry'
 end
 
 group :development do
