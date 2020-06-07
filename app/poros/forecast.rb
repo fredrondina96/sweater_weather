@@ -43,6 +43,7 @@ class Forecast
   end
 
   def get_current_visibility
+    # not currently loading for denver, should be here according to docs
     @weather[:current][:visibility]
   end
 
@@ -63,8 +64,6 @@ class Forecast
   end
 
   def get_hourly_forecast
-    binding.pry
-
     @weather[:hourly].inject(Hash.new({})) do |hourly, weather|
       hourly[weather[:dt]] = {
         temp: weather[:temp],
