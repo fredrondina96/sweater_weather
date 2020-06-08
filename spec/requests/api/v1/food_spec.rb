@@ -27,8 +27,11 @@ RSpec.describe 'Travel Food Request', type: :request do
                   }
     expect(actual_data["end_location"]).to eq(expected[:data][:attributes][:end_location])
     expect(actual_data["travel_time"]).to eq(expected[:data][:attributes][:travel_time])
-    # expect(actual_data["forecast"]).to eq(expected[:data][:attributes][:forecast])
     expect(actual_data["restaurant"]["address"]).to eq(expected[:data][:attributes][:restaurant][:address])
     expect(actual_data["restaurant"]["name"]).to eq(expected[:data][:attributes][:restaurant][:name])
+    #wanted to mock time so that temperature is always the same
+    # was not able to correctly impliment
+
+    # expect(actual_data["forecast"]).to eq(expected[:data][:attributes][:forecast])
   end
 end
