@@ -3,9 +3,8 @@ class Restaurant
               :address
 
   def initialize(coordinates, cuisine)
-    @data = load_data(coordinates, cuisine)
-    @name = @data[:restaurant][:name]
-    @address = @data[:restaurant][:location][:address]
+    @name = load_data(coordinates, cuisine)[:restaurant][:name]
+    @address = load_data(coordinates, cuisine)[:restaurant][:location][:address]
   end
 
   private
@@ -31,6 +30,6 @@ class Restaurant
       req.headers['user-key'] = ENV.fetch('ZOMATO_API_KEY')
     end
     restaurant = JSON.parse(response.body, symbolize_names: true)[:restaurants].first
-  
+
   end
 end
