@@ -33,5 +33,10 @@ class Api::V1::FoodieController < ApplicationController
     end
     restaurant = JSON.parse(response.body, symbolize_names: true)[:restaurants].first
     # binding.pry
+    forecast = ForecastFacade.new(params[:end])
+    weather_summary = ("Temp is #{forecast.data.current_temp}, Forecast is #{forecast.data.current_description}")
+    travel_food = TravelFood.new(params[:end], travel_time, weather_summary, restaurant)
+    # binding.pry
+    render json: TravelFoodSerializer.new(travel_food)
   end
 end
