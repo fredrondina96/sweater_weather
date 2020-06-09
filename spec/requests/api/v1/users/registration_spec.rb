@@ -13,7 +13,7 @@ RSpec.describe 'User API Path', type: :request do
     expect(user.password_digest).to be_truthy
   end
 
-  it 'will not register if user doesnt meet the requirments' do
+  it 'will not register if passwords dont match' do
     post "/api/v1/users", params: {
         email: 'newuser@example.com',
         password: 'password',
@@ -24,5 +24,24 @@ RSpec.describe 'User API Path', type: :request do
     expect(response.status).to eq(400)
     json = JSON.parse(response.body, symbolize_names: true)
     expect(json[:errors]).to eq("Password confirmation doesn't match Password")
+  end
+
+  it "will not register is email is already taken" do
+    post "/api/v1/users", params: {
+        email: 'newuser@example.com',
+        password: 'password',
+        password_confirmation: 'password'
+      }
+
+    post "/api/v1/users", params: {
+        email: 'newuser@example.com',
+        password: 'password',
+        password_confirmation: 'password'
+      }
+
+    expect(response).not_to be_successful
+    expect(response.status).to eq(400)
+    json = JSON.parse(response.body, symbolize_names: true)
+    expect(json[:errors]).to eq("Email has already been taken")
   end
 end
