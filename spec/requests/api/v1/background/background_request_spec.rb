@@ -13,7 +13,7 @@ RSpec.describe 'Background Image API', type: :request do
                     :url=>"https://images.unsplash.com/photo-1541364449983-738946b792ac?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0MDg4OX0"
                     }
                   }
-      }
+                }
 
     get "/api/v1/backgrounds?location=#{location}"
 
